@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.apps.vithursan.inboxme.RegisterActivity">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/loginToolbarr">
+
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/loginToolbar"
+                    android:background="?attr/colorPrimary"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/log_in"
+                        android:textSize="18sp"
+                        android:id="@+id/toolbarTitle"
+                        android:textColor="@color/colorWhite"/>
+
+                </android.support.v7.widget.Toolbar>
+            </android.support.design.widget.AppBarLayout>
+
+            <TextView
+                android:text="@string/registertittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="65sp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/registerTitle"
+                android:layout_below="@+id/loginToolbarr"
+                android:layout_centerHorizontal="true" />
+
+            <EditText
+                android:hint="@string/firstName"
+                android:background="@drawable/box_border"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/registerTitle"
+                android:id="@+id/tfFirstName" />
+
+            <EditText
+                android:background="@drawable/box_border"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="@string/secondName"
+                android:ems="10"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tfFirstName"
+                android:id="@+id/tfSecondName" />
+
+            <EditText
+                android:hint="@string/email"
+                android:background="@drawable/box_border"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/tfEmail"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tfSecondName"
+                android:layout_centerHorizontal="true"/>
+
+            <EditText
+                android:hint="@string/confirmEmail"
+                android:background="@drawable/box_border"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/tfCEmail"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tfEmail"
+                android:layout_centerHorizontal="true"/>
+
+
+            <EditText
+                android:hint="@string/password"
+                android:background="@drawable/box_border"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:layout_below="@+id/tfCEmail"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/tfPassword" />
+
+            <EditText
+                android:hint="@string/conformPassword"
+                android:background="@drawable/box_border"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:layout_below="@+id/tfPassword"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/tfCPassword" />
+
+            <RadioGroup
+                android:background="@drawable/box_border"
+                android:padding="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:id="@+id/Gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/tfCPassword">
+
+                <TextView
+                    android:text="@string/gender"
+                    android:textSize="20sp"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioText"/>
+
+                <RadioButton
+                    android:text="@string/male"
+                    android:id="@+id/btnRadioMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"/>
+
+                <RadioButton
+                    android:text="@string/female"
+                    android:id="@+id/btnRadioFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RadioGroup>
+
+            <TextView
+                android:text="@string/date_of_birth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Gender"
+                android:textSize="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tvDOB" />
+
+            <DatePicker
+                android:background="@drawable/box_border"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDOB"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/datePicker"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner" />
+
+
+            <Button
+                android:text="@string/register"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnRegister"
+                android:onClick="onbtnRegisterClick"
+                android:layout_below="@+id/datePicker"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@android:color/white"
+                android:background="@color/colorPrimary"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

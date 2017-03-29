@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Inbox.Me</string>
+    <string name="logIn">LOG IN</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="first_name">First Name</string>
+    <string name="second_name">Second Name</string>
+    <string name="register">REGISTER</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="firstName">First Name</string>
+    <string name="secondName">Second Name</string>
+    <string name="confirmEmail">Confirm Email</string>
+    <string name="conformPassword">Conform Password</string>
+    <string name="gender">Gender:</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="date_of_birth">Date of birth:</string>
+    <string name="radio_male">Male</string>
+    <string name="radio_female">Female</string>
+    <string name="email">Email</string>
+    <string name="registertittle">Register:</string>
+    <string name="More">More</string>
+    <string name="notification">Notification</string>
+    <string name="map">Map</string>
+    <string name="feed">Feed</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Chat">Chat</string>
+    <string name="log_in">Log In</string>
+    <string name="Register">Register</string>
+    <string name="back">Back</string>
+    <string name="title_activity_bottom">BottomActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_more">More</string>
+</resources>

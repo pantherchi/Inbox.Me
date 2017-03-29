@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/feedBB"
+        android:icon="@drawable/ic_feed"
+        android:title="@string/feed"
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/chatBB"
+        android:icon="@drawable/ic_chat"
+        android:title="@string/Chat"
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/notificationBB"
+        android:icon="@drawable/ic_notification"
+        android:title="@string/notification"
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/moreBB"
+        android:icon="@drawable/ic_feed2"
+        android:title="@string/More"
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
+</menu>
