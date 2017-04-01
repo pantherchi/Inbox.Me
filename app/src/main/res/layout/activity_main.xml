@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+
     tools:context="com.apps.vithursan.inboxme.MainActivity">
 
     <FrameLayout
@@ -14,14 +14,16 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomBar"
         android:layout_alignParentTop="true">
-
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.apps.vithursan.inboxme.FeedFragment"/>
     </FrameLayout>
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/colorBG"
+        app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@color/colorWhite"
         app:itemTextColor="@color/colorWhite"
         android:layout_alignParentBottom="true"

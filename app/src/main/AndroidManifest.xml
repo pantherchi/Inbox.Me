@@ -32,7 +32,8 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".BottomActivity"
-            android:label="@string/title_activity_bottom"></activity>
+            android:label="@string/title_activity_bottom" />
+        <activity android:name=".test"></activity>
     </application>
 
 </manifest>

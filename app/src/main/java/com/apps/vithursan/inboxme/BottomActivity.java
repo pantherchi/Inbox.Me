@@ -26,6 +26,9 @@ public class BottomActivity extends AppCompatActivity {
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_notifications);
                     return true;
+                case R.id.navigation_chat:
+                    mTextMessage.setText(R.string.title_chat);
+                    return true;
                 case R.id.navigation_more:
                     mTextMessage.setText(R.string.title_more);
                     return true;

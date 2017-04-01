@@ -7,10 +7,13 @@ public class LoginHandler {
     private static LoginHandler mInstance;
     private static Context mCtx;
 
-    private static final String SHARED_PREF_NAME = "mysharedpref12";
+    private static final String SHARED_PREF_NAME = "inboxme-sp";
     private static final String KEY_FIRSTNAME = "firstname";
-    private static final String KEY_USER_EMAIL = "useremail";
-    private static final String KEY_USER_ID = "userid";
+    private static final String KEY_SECONDNAME = "secondname";
+    private static final String KEY_GENDER = "gender";
+    private static final String KEY_DOB = "dob";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_ID = "id";
 
 
     private LoginHandler(Context context) {
@@ -24,14 +27,17 @@ public class LoginHandler {
         return mInstance;
     }
 
-    public boolean userLogin(int id, String firstname, String email){
+    public boolean userLogin(int id, String firstname, String secondname, String email, String gender, String dob){
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt(KEY_USER_ID, id);
-        editor.putString(KEY_USER_EMAIL, email);
+        editor.putInt(KEY_ID, id);
         editor.putString(KEY_FIRSTNAME, firstname);
+        editor.putString(KEY_SECONDNAME, secondname);
+        editor.putString(KEY_EMAIL, email);
+        editor.putString(KEY_GENDER, gender);
+        editor.putString(KEY_DOB, dob);
 
         editor.apply();
 
@@ -40,10 +46,7 @@ public class LoginHandler {
 
     public boolean isLoggedIn(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        if(sharedPreferences.getString(KEY_FIRSTNAME, null) != null){
-            return true;
-        }
-        return false;
+        return sharedPreferences.getString(KEY_EMAIL, null) != null;
     }
 
     public boolean logout(){
@@ -52,5 +55,28 @@ public class LoginHandler {
         editor.clear();
         editor.apply();
         return true;
+    }
+
+    public String getFirstname(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_FIRSTNAME, null);
+    }
+
+    public String getSecondname(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_SECONDNAME, null);
+    }
+    public String getEmail(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_EMAIL, null);
+    }
+    public String getGender(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_GENDER, null);
+    }
+    public String getDOB(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_DOB, null);
+
     }
 }
