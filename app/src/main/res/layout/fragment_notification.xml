@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/grey"
     tools:context="com.apps.vithursan.inboxme.NotificationFragment">
 
     <RelativeLayout
@@ -15,7 +15,7 @@
             android:id="@+id/textView"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorDark"
             android:textSize="20sp"/>
     </RelativeLayout>
 

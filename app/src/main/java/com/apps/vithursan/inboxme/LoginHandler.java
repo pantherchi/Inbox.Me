@@ -49,12 +49,9 @@ public class LoginHandler {
         return sharedPreferences.getString(KEY_EMAIL, null) != null;
     }
 
-    public boolean logout(){
+    public int getUserID(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
-        return true;
+        return sharedPreferences.getInt(KEY_ID, 0);
     }
 
     public String getFirstname(){
@@ -78,5 +75,12 @@ public class LoginHandler {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_DOB, null);
 
+    }
+    public boolean logout(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+        return true;
     }
 }

@@ -31,8 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView3"
-        android:text="15" />
+        android:layout_below="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView5"
@@ -122,4 +121,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView15"
         android:text="TextView" />
+
+    <Button
+        android:id="@+id/btnClearSP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDOB"
+        android:layout_marginTop="65dp"
+        android:layout_centerHorizontal="true"
+        android:text="Clear SharedPref" />
+
+    <Button
+        android:id="@+id/btnChangePass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:text="Change Password"
+        android:layout_below="@+id/btnClearSP"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

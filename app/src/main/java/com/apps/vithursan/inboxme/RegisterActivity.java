@@ -17,11 +17,9 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -121,14 +119,14 @@ public class RegisterActivity extends AppCompatActivity{
     }
 
     //Function to store user data into the database.
-    private void userRegister(EditText fname, EditText sname, EditText mail, EditText pass, EditText cmail, EditText cpass){
+    private void userRegister(EditText fist_name, EditText second_name, EditText mail, EditText pass, EditText confirm_mail, EditText confirm_pass){
         //Getting strings from the user and storing it into a variable.
-        final String firstname = fname.getText().toString().trim();
-        final String secondname = sname.getText().toString().trim();
+        final String firstname = fist_name.getText().toString().trim();
+        final String secondname = second_name.getText().toString().trim();
         final String email = mail.getText().toString().trim();
         final String password = pass.getText().toString().trim();
-        final String cEmail = cmail.getText().toString().trim();
-        final String cPassword = cpass.getText().toString().trim();
+        final String cEmail = confirm_mail.getText().toString().trim();
+        final String cPassword = confirm_pass.getText().toString().trim();
 
         //Getting string of chosen gender.
         int selectedId = radioGroup.getCheckedRadioButtonId();
@@ -146,6 +144,7 @@ public class RegisterActivity extends AppCompatActivity{
         int cYear = cal.get(Calendar.YEAR);
         int cMonth = cal.get(Calendar.MONTH) + 1;
         int cDay = cal.get(Calendar.DAY_OF_MONTH);
+
         //Getting the values into the date format.
         Date cDate = new Date(cYear,cMonth,cDay);
         Date bDate = new Date(year,month,day);
@@ -153,8 +152,8 @@ public class RegisterActivity extends AppCompatActivity{
         boolean confirmPassword = password.equals(cPassword);
         boolean confirmEmail = email.equals(cEmail);
 
-        //Passing parameters to validate.
-        int value = val(cDate, bDate, confirmEmail, confirmPassword);
+        //Passing parameters to validate (Basic).
+        int value = validate(cDate, bDate, confirmEmail, confirmPassword);
 
         if (value == 3) {
             //Setting up a progress dialog so that the user can follow the process.
@@ -167,6 +166,7 @@ public class RegisterActivity extends AppCompatActivity{
                         public void onResponse(String response) {
                             progressDialog.dismiss();
                             Toast.makeText(RegisterActivity.this, response, Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 
                         }
                     }, new Response.ErrorListener() {
@@ -188,7 +188,7 @@ public class RegisterActivity extends AppCompatActivity{
                     return params;
                 }
             };
-            RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+            SingletonRequestHandler.getInstance(this).addToRequestQueue(stringRequest);
         }else {
             if (value == 0){
                 Toast.makeText(RegisterActivity.this, "You have to be over 16 years old.", Toast.LENGTH_SHORT).show();
@@ -201,12 +201,12 @@ public class RegisterActivity extends AppCompatActivity{
         }
     }
     //This function will check if the user goes through basic validations.
-    private int val(Date cu, Date bi, boolean cE, boolean cP){
+    private int validate(Date cu, Date bi, boolean confirm_email, boolean confirm_password){
         if ((((cu.getTime()-bi.getTime())/(1000*60*60*24)) < 5844)){
             return 0;
-        }else if (!cE){
+        }else if (!confirm_email){
             return  1;
-        }else if (!cP){
+        }else if (!confirm_password){
             return 2;
         }else {
             return 3;

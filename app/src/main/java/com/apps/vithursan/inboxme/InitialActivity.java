@@ -47,7 +47,7 @@ public void ontxtTermsClick(View v){
         startActivity(i);
     }
     public void testFragment(View v){
-        Intent i = new Intent(InitialActivity.this, MainActivity.class);
+        Intent i = new Intent(InitialActivity.this, test.class);
         startActivity(i);
     }
 

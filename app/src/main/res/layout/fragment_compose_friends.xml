@@ -3,17 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/grey"
-    tools:context="com.apps.vithursan.inboxme.ChatFragment">
+    tools:context="com.apps.vithursan.inboxme.ComposeFriendsFragment">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/grey"
-            tools:context="com.apps.vithursan.inboxme.ChatFragment">
+            tools:context="com.apps.vithursan.firebasechat.FriendFragment">
             <android.support.v7.widget.Toolbar
                 android:id="@+id/my_chat_toolbar"
                 android:layout_width="match_parent"
@@ -22,19 +20,16 @@
                 android:elevation="4dp"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
         </FrameLayout>
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Chat" />
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="friends" />
 
     </RelativeLayout>
-
-
 
 </FrameLayout>

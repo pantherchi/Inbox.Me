@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected Button btnLogIn;
     private ProgressDialog progressDialog;
 
-    final String PHP_URL = "http://192.168.1.7/inboxme/fln.php";
+    final String PHP_URL = "http://192.168.1.7/inboxme/userLogin.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 return params;
             }
         };
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+        SingletonRequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
     @Override
