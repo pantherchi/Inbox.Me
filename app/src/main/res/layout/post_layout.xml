@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/username"
+            android:layout_alignParentTop="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/date"
+            android:layout_below="@+id/username"
+            android:textSize="12sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/postTitle"
+            android:layout_below="@+id/date"
+            android:textSize="16sp"
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/postContent"
+            android:layout_below="@+id/postTitle"
+            android:textSize="14sp"
+            android:textColor="@color/colorBlack"/>
+        <View
+            android:layout_marginTop="5sp"
+            android:layout_below="@+id/postContent"
+            android:id="@+id/hrLine1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+        <TableLayout
+            android:layout_below="@id/hrLine1"
+            android:id="@+id/tl"
+            android:layout_width="match_parent"
+            android:shrinkColumns="3"
+            android:stretchColumns="1"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:layout_weight="1"
+                android:id="@+id/trInterested"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_favorite_grey_300_18dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/postLikes"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"/>
+
+                <TextView
+                    android:id="@+id/tvInterested"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="People are interested" />
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

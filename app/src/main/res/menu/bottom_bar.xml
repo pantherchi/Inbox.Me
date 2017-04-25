@@ -8,15 +8,15 @@
         android:enabled="true"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/chatBB"
-        android:icon="@drawable/ic_chat"
-        android:title="@string/Chat"
+        android:id="@+id/friendsBB"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/friends"
         android:enabled="true"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/notificationBB"
-        android:icon="@drawable/ic_notification"
-        android:title="@string/notification"
+        android:id="@+id/profileBB"
+        android:icon="@drawable/ic_data_usage_black_24dp"
+        android:title="@string/profile"
         android:enabled="true"
         app:showAsAction="ifRoom" />
     <item

@@ -9,7 +9,6 @@
     tools:context="com.apps.vithursan.inboxme.InitialActivity">
 
     <TextView
-        android:onClick="testFragment"
         android:text="@string/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

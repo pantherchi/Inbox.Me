@@ -42,13 +42,8 @@ public class InitialActivity extends AppCompatActivity {
         Intent i = new Intent(InitialActivity.this, RegisterActivity.class);
         startActivity(i);
     }
-public void ontxtTermsClick(View v){
+    public void ontxtTermsClick(View v){
         Intent i = new Intent(InitialActivity.this, TermsActivity.class);
         startActivity(i);
     }
-    public void testFragment(View v){
-        Intent i = new Intent(InitialActivity.this, test.class);
-        startActivity(i);
-    }
-
 }

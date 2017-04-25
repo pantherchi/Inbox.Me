@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:clickable="true"
     tools:context="com.apps.vithursan.inboxme.ProfileFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/titleDetails"
@@ -15,97 +17,170 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView"
             android:layout_centerHorizontal="true"
-            android:text="Details"
+            android:text="User Profile"
             android:textColor="@color/colorBlack"
             android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
+        <TableRow
+            android:id="@+id/trUsername"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/titleDetails"
-            android:layout_marginTop="12dp"
-            android:text="First Name" />
+            android:background="@color/colorWhite">
 
-        <TextView
-            android:id="@+id/tvFirstname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView5"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="UserName"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/tvFirstname"
-            android:layout_marginTop="14dp"
-            android:text="Second Name" />
+            <TextView
+                android:id="@+id/tvUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/tvSecondname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView9"
-            android:text="TextView" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
+        <TableRow
+            android:id="@+id/trFirstname"
+            android:layout_marginTop="5sp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/tvSecondname"
-            android:layout_marginTop="14dp"
-            android:text="Email" />
+            android:layout_below="@+id/trUsername"
+            android:background="@color/colorWhite">
 
-        <TextView
-            android:id="@+id/tvEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView11"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="First Name"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/tvEmail"
-            android:layout_marginTop="16dp"
-            android:text="Gender" />
+            <TextView
+                android:id="@+id/tvFirstname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/tvGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView13"
-            android:text="TextView" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="wrap_content"
+        <TableRow
+            android:id="@+id/trSecondname"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvGender"
-            android:layout_marginTop="16dp"
-            android:text="Date of Birth" />
+            android:layout_below="@+id/trFirstname"
+            android:layout_marginTop="5sp"
+            android:background="@color/colorWhite">
 
-        <TextView
-            android:id="@+id/tvDOB"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="Second Name"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvSecondname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/trEmail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView15"
-            android:text="TextView" />
+            android:layout_below="@+id/trSecondname"
+            android:layout_marginTop="5sp"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/trGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/trEmail"
+            android:layout_marginTop="5sp"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="Gender"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/trDOB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/trGender"
+            android:layout_marginTop="5sp"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="Date of Birth"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvDOB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <Button
+            android:id="@+id/btnUpdateInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/trDOB"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:background="@color/colorDark"
+            android:textStyle="bold"
+            android:text="Update User Info" />
     </RelativeLayout>
 </FrameLayout>

@@ -35,31 +35,40 @@
 
                 <EditText
                     android:id="@+id/tvSearch"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="text"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorBlack"
                     android:hint="Search Friends"/>
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:textAlignment="inherit"
-                    android:layout_width="wrap_content"
+                <Button
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"
-                    android:text="Search" />
+                    android:layout_width="wrap_content"
+                    android:id="@+id/btnSearch"
+                    android:text="Search"/>
             </TableRow>
-        </TableLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_height="match_parent"
+        </TableLayout>
+        <TextView
+            android:layout_marginTop="50dp"
+            android:textAlignment="center"
+            android:id="@+id/tvItem"
             android:layout_width="match_parent"
-            android:id="@+id/recyclerView"
-            android:layout_below="@+id/trFriend">
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@color/colorBlack"
+            android:layout_below="@+id/trFriend"
+            android:hint="Username"/>
+        <Button
+            android:layout_below="@+id/tvItem"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="5sp"
+            android:id="@+id/btnAction"
+            android:text="Add"/>
 
     </RelativeLayout>
 

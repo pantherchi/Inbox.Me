@@ -28,7 +28,7 @@ public class ComposeFriendsFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_cancel:
-                        ChatFragment fragment = new ChatFragment();
+                        FriendsFragment fragment = new FriendsFragment();
                         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.currentContainer, fragment);
                         fragmentTransaction.commit();

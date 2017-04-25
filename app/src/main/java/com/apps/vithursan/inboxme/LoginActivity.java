@@ -83,12 +83,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (!jsonObject.getBoolean("error")){
-                        LoginHandler.getInstance(getApplicationContext()).userLogin(jsonObject.getInt("id"), jsonObject.getString("firstname"),jsonObject.getString("secondname"), jsonObject.getString("email"),jsonObject.getString("gender"),jsonObject.getString("dob"));
+                        LoginHandler.getInstance(getApplicationContext()).userLogin(jsonObject.getInt("id"), jsonObject.getString("username"), jsonObject.getString("firstname"), jsonObject.getString("secondname"), jsonObject.getString("email"), jsonObject.getString("gender"), jsonObject.getString("dob"));
                         Toast.makeText(getApplicationContext(),"Successfully logged in",Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
                     }else{
                         Toast.makeText(getApplicationContext(),jsonObject.toString(),Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

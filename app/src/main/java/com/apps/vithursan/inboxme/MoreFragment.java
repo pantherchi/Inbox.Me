@@ -17,6 +17,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class MoreFragment extends Fragment {
 
     public MoreFragment() {
@@ -32,7 +37,7 @@ public class MoreFragment extends Fragment {
         if (container != null) {
             container.removeAllViews();
         }
-        final String[] optionItems = {"Profile", "Friends", "Map View", "Days Till"};
+        final String[] optionItems = {"Map"};
 
         ListView listView =(ListView)view.findViewById(R.id.moreNavListView);
         ListAdapter listViewAdapter = new ArrayAdapter<>(
@@ -50,17 +55,12 @@ public class MoreFragment extends Fragment {
                         long x = parent.getItemIdAtPosition(position);
 
                         if(x == 0){
-                            ProfileFragment fragment = new ProfileFragment();
-                            android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.currentContainer, fragment);
-                            fragmentTransaction.addToBackStack( "tag" ).commit();
-                        }else{
-                            String option = String.valueOf(parent.getItemAtPosition(position));
-                            Toast.makeText(getActivity().getApplicationContext(), option, Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getActivity(), MapsActivity.class));
                         }
                     }
                 }
         );
+
         Button btnLogout = (Button)view.findViewById(R.id.btnLogOut);
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
