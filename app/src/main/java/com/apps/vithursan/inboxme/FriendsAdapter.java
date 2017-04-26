@@ -13,9 +13,9 @@ import java.util.List;
 
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHolder> {
     private Context context;
-    List<FriendsData>  listFriends;
+    List<Friends>  listFriends;
 
-    public FriendsAdapter(List<FriendsData>  listFriends, Context context){
+    public FriendsAdapter(List<Friends>  listFriends, Context context){
         super();
         this.listFriends = listFriends;
         this.context = context;
@@ -30,12 +30,12 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(FriendsAdapter.ViewHolder holder, int position) {
-        FriendsData friendsData =  listFriends.get(position);
+        Friends friends =  listFriends.get(position);
 
         //Showing data on the views
-        holder.tvFriendFirstname.setText(friendsData.getFirstname());
-        holder.tvFriendSecondname.setText(friendsData.getSecondname());
-        holder.tvUsername.setText("@"+friendsData.getUsername());
+        holder.tvFriendFirstname.setText(friends.getFirstname());
+        holder.tvFriendSecondname.setText(friends.getSecondname());
+        holder.tvUsername.setText("@"+friends.getUsername());
     }
 
     @Override

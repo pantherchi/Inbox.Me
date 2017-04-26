@@ -25,13 +25,18 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
         </FrameLayout>
 
-
-        <android.support.v7.widget.RecyclerView
-            android:layout_height="match_parent"
+        <android.support.v4.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipeRefresh"
+            android:layout_below="@+id/topBar"
             android:layout_width="match_parent"
-            android:id="@+id/recyclerView"
-            android:layout_below="@+id/topBar">
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/recyclerView">
+            </android.support.v7.widget.RecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
     </RelativeLayout>
 
 </FrameLayout>

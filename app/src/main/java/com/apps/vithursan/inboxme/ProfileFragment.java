@@ -26,7 +26,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
-
+        //Instantiating all the components beforehand in the onCreate method.
         tvUsername = (TextView) view.findViewById(R.id.tvUsername);
         tvFirstname = (TextView) view.findViewById(R.id.tvFirstname);
         tvSecondname = (TextView) view.findViewById(R.id.tvSecondname);
@@ -35,17 +35,20 @@ public class ProfileFragment extends Fragment {
         tvDOB = (TextView)view.findViewById(R.id.tvDOB);
         btnUpdateInfo = (Button)view.findViewById(R.id.btnUpdateInfo);
 
+        //this method fetches the user data from the private shared preference file and assigns it to the text views
         fetch(tvUsername,tvFirstname, tvSecondname, tvEmail, tvGender, tvDOB);
 
         btnUpdateInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //starts the DataUpdate activity which can be used to update the users information.
                 startActivity(new Intent(getActivity(), DataUpdate.class));
             }
         });
         return view;
     }
     public void fetch(TextView tvUsername, TextView tvFirstname ,TextView tvSecondname, TextView tvEmail, TextView tvGender, TextView tvDOB){
+        //On each component the objects getter method is called.
         tvUsername.setText(LoginHandler.getInstance(getActivity()).getUsername());
         tvFirstname.setText(LoginHandler.getInstance(getActivity()).getFirstname());
         tvSecondname.setText(LoginHandler.getInstance(getActivity()).getSecondname());

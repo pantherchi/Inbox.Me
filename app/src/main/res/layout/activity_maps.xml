@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -31,7 +30,7 @@
                         android:inputType="textCapCharacters"
                         android:background="#ffffff"
                         android:textColor="@color/colorPrimary"
-                        android:hint="Address" />
+                        android:hint="Post Code" />
                     <Button
                         android:id="@+id/btnSearch"
                         android:layout_width="wrap_content"
@@ -43,7 +42,5 @@
                 </TableRow>
             </TableLayout>
         </RelativeLayout>
-
     </fragment>
-
 </RelativeLayout>

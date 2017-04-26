@@ -44,7 +44,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -55,6 +57,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
         mMap.setMyLocationEnabled(true);
+
+
     }
 
     @Override
@@ -100,7 +104,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Address address = addressList.get(0);
         LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
         mMap.addMarker(new MarkerOptions().position(latLng).title(Title).snippet(snippet));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
     }
     public void onSearch(View view) throws IOException {
         location = (EditText)findViewById(R.id.tvLocation);
@@ -112,7 +116,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String locality = address.getLocality();
         LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
         mMap.addMarker(new MarkerOptions().position(latLng).title(locality));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
     }
 }

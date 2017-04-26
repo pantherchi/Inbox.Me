@@ -1,6 +1,5 @@
 package com.apps.vithursan.inboxme;
 
-import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,7 +35,7 @@ import java.util.List;
 import java.util.Map;
 
 
-
+//This is set because in order to have a scroll listener the minimum of marshmallow android version is needed.
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class FeedFragment extends Fragment implements RecyclerView.OnScrollChangeListener{
     private List<Post> listPost;
@@ -45,38 +44,47 @@ public class FeedFragment extends Fragment implements RecyclerView.OnScrollChang
     private SwipeRefreshLayout mySwipeRefreshLayout;
     private RecyclerView.Adapter adapter;
 
+    //Counter that will be assigned to the post in the php script
     private int count = 0;
 
+    //Location of the php script for adding a new post.
     final String PHP_NEW_POST = "http://192.168.1.7/inboxme/newPost.php";
-    public static final String PHP_URL_DATA = "http://192.168.1.7/inboxme/test21.php?post=";
+//    public static final String PHP_URL_DATA = "http://192.168.1.7/inboxme/usersPost.php?post=";
+    //Location of the php script for getting the post from the database post table.
+    public static final String PHP_URL_DATA = "http://192.168.1.7/inboxme/getPost.php?post=";
 
     public FeedFragment() {
         // Required empty public constructor
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_feed, container, false);
 
+        //initialising the recycler view in the feed_fragment.xml
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
 
+        //layout of the recycler view is set to linear so that it is in a linear fashion just like ordinary posts.
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
 
+        //new array list is initialised in the view so that it can be parsed with json object values
         listPost = new ArrayList<>();
 
+        //This method is the one which triggers the request and adds one to the count ($post in php) so that the next data can be fetched.
         getData();
 
+        //Setting up the scroll change listener
         recyclerView.setOnScrollChangeListener(this);
 
+        //constructing a new adapter with the json parsed list item and the context of this fragment
         adapter = new PostAdapter(listPost, getContext());
 
         //Adding adapter to recycler view
         recyclerView.setAdapter(adapter);
 
+        //Floating button that triggers the new post method and inserts the user input to the posts table in the database
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -84,14 +92,19 @@ public class FeedFragment extends Fragment implements RecyclerView.OnScrollChang
                 newPost();
             }
         });
-
+        //The user can reload the feed by swiping the feed cards downwards
+        //Initialising
         mySwipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipeRefresh);
+        //setting the listener
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
+                        //a toast is prompted
                         Toast.makeText(getContext(), "Refreshing...", Toast.LENGTH_SHORT).show();
+                        //a method is triggered
                         onSwipeRefresh();
+                        //and the mySwipeRefreshLayout is set to hide once its done
                         mySwipeRefreshLayout.setRefreshing(false);
 
                     }
@@ -101,6 +114,8 @@ public class FeedFragment extends Fragment implements RecyclerView.OnScrollChang
         return view;
     }
 
+    //Method which will be triggered onRefresh() from the SwipeRefreshLayout
+    //this method is just detaching and attaching the fragment so that the onCreateView() can be ran again.
     private void onSwipeRefresh() {
         FeedFragment fragment = new FeedFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -108,6 +123,7 @@ public class FeedFragment extends Fragment implements RecyclerView.OnScrollChang
         fragmentTransaction.detach(fragment).attach(fragment).commit();
     }
 
+    //Method that triggers an alert dialog.
     private void newPost() {
         final String user_name = String.valueOf(LoginHandler.getInstance(getContext()).getUsername());
 
@@ -203,6 +219,7 @@ public class FeedFragment extends Fragment implements RecyclerView.OnScrollChang
     }
 
     private void getData() {
+        //this method calls the
         SingletonRequestHandler.getInstance(getContext()).addToRequestQueue(getUsersPosts(count));
         count++;
     }
@@ -216,12 +233,12 @@ public class FeedFragment extends Fragment implements RecyclerView.OnScrollChang
                 //Getting json object from the array and passing each json data to the post object.
                 JSONObject json = array.getJSONObject(i);
                 Log.v("1","SETTING STRINGS");
-                post.setId(json.getString(PostHandler.TAG_POST_ID));
-                post.setUsername(json.getString(PostHandler.TAG_USERNAME));
-                post.setTimestamp(json.getString(PostHandler.TAG_TIME));
-                post.setTitle(json.getString(PostHandler.TAG_TITLE));
-                post.setContent(json.getString(PostHandler.TAG_CONTENT));
-                post.setLikes(json.getString(PostHandler.TAG_LIKES));
+                post.setId(json.getString("id"));
+                post.setUsername(json.getString("username"));
+                post.setTimestamp(json.getString("timestamp"));
+                post.setTitle(json.getString("title"));
+                post.setContent(json.getString("content"));
+                post.setLikes(json.getString("likes"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -257,7 +274,6 @@ public class FeedFragment extends Fragment implements RecyclerView.OnScrollChang
                     1. Recycler views adapter not equals zero meaning that when the getData() method is called in the onCreate() the array  is inflated with no data.
                     2. LastCompletelyVisibleItemPosition is not equals to -1 and that the previously set adapter count is 1 less than the last position as it starts 0.
                  */
-//                return true;
         }
         return false;
     }

@@ -21,13 +21,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity{
-    protected EditText tfFirstName, tfSecondName, tfEmail, tfCEmail, tfPassword, tfCPassword;
+    protected EditText tfFirstName, tfSecondName, tfUsername, tfEmail, tfCEmail, tfPassword, tfCPassword;
     protected RadioGroup radioGroup;
     protected RadioButton radioButton,btnRadioMale, btnRadioFemale;
     protected Button btnRegister;
@@ -37,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity{
     protected Calendar cal;
     private ProgressDialog progressDialog;
 
+    //URL of the php file where the request will be sent by volley
     final String PHP_URL = "http://192.168.1.7/inboxme/registerUser.php";
 
 
@@ -64,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity{
         //Edit Texts
         tfFirstName = (EditText)findViewById(R.id.tfFirstName);
         tfSecondName = (EditText)findViewById(R.id.tfSecondName);
+        tfUsername = (EditText)findViewById(R.id.tfUsername);
         tfEmail = (EditText)findViewById(R.id.tfEmail);
         tfCEmail = (EditText)findViewById(R.id.tfCEmail);
         tfPassword = (EditText)findViewById(R.id.tfPassword);
@@ -76,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity{
         btnRegister = (Button)findViewById(R.id.btnRegister);//Instantiating button to be used as a summit.
 
         //For loop to set app the edit text font to Nunito... Saves space.
-        EditText[] editTexts = {tfFirstName, tfSecondName, tfEmail, tfCEmail, tfPassword, tfCPassword};
+        EditText[] editTexts = {tfFirstName, tfSecondName, tfUsername, tfEmail, tfCEmail, tfPassword, tfCPassword};
         for (int i = 0; i < editTexts.length; i++) {
             editTexts[i].setTypeface(Nunito);
         }
@@ -90,8 +95,9 @@ public class RegisterActivity extends AppCompatActivity{
                 textViews[i].setTypeface(ComfortaaB);
             }
         }
+        //Progress dialog object is crated
         progressDialog = new ProgressDialog(this);
-
+        //This method gets all the components from the xml layout file and passes it to the userRegister function when the button clicked.
         ButtonListener();
     }
 
@@ -103,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity{
         //Declaring the edit text components.
         final EditText firstname = (EditText)findViewById(R.id.tfFirstName);
         final EditText secondname = (EditText)findViewById(R.id.tfSecondName);
+        final EditText username = (EditText)findViewById(R.id.tfUsername);
         final EditText email = (EditText)findViewById(R.id.tfEmail);
         final EditText cEmail = (EditText)findViewById(R.id.tfCEmail);
         final EditText password = (EditText)findViewById(R.id.tfPassword);
@@ -112,17 +119,18 @@ public class RegisterActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 //Passing in the necessary strings into user register function.
-                userRegister(firstname, secondname, email, password, cEmail, cPassword);
+                userRegister(firstname, secondname, username, email, password, cEmail, cPassword);
 
             }
         });
     }
 
     //Function to store user data into the database.
-    private void userRegister(EditText fist_name, EditText second_name, EditText mail, EditText pass, EditText confirm_mail, EditText confirm_pass){
+    private void userRegister(EditText fist_name, EditText second_name, EditText user_name, EditText mail, EditText pass, EditText confirm_mail, EditText confirm_pass){
         //Getting strings from the user and storing it into a variable.
         final String firstname = fist_name.getText().toString().trim();
         final String secondname = second_name.getText().toString().trim();
+        final String username = user_name.getText().toString().trim();
         final String email = mail.getText().toString().trim();
         final String password = pass.getText().toString().trim();
         final String cEmail = confirm_mail.getText().toString().trim();
@@ -149,13 +157,13 @@ public class RegisterActivity extends AppCompatActivity{
         Date cDate = new Date(cYear,cMonth,cDay);
         Date bDate = new Date(year,month,day);
 
-        boolean confirmPassword = password.equals(cPassword);
-        boolean confirmEmail = email.equals(cEmail);
+        boolean confirmPassword = password.equals(cPassword);//boolean checking if the value in password is same as cPassword. Meaning the password match.
+        boolean confirmEmail = email.equals(cEmail);//boolean checking if the value in email is same as email. Meaning the emails match.
 
         //Passing parameters to validate (Basic).
         int value = validate(cDate, bDate, confirmEmail, confirmPassword);
 
-        if (value == 3) {
+        if (value == 3) {//Carrying out the volley request
             //Setting up a progress dialog so that the user can follow the process.
             progressDialog.setMessage("Registering...");
             progressDialog.show();
@@ -164,21 +172,41 @@ public class RegisterActivity extends AppCompatActivity{
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
+                            //progressDialog is dismissed.
                             progressDialog.dismiss();
-                            Toast.makeText(RegisterActivity.this, response, Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                            JSONObject jsonObject = null;
+                            try {
+                                jsonObject = new JSONObject(response);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                assert jsonObject != null;
+                                if (!jsonObject.getBoolean("error")){
+//                                    Toast.makeText(RegisterActivity.this, response, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
 
+                                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                }else {
+                                    Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    //progressDialog is dismissed.
                     progressDialog.hide();
+                    //The volley error is prompted/toasted
                     Toast.makeText(RegisterActivity.this, error.toString(), Toast.LENGTH_LONG).show();
                 }
             }) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<>();
+                    params.put("username", username);
                     params.put("gender", gender);
                     params.put("dob", dob);
                     params.put("firstname", firstname);
@@ -188,8 +216,10 @@ public class RegisterActivity extends AppCompatActivity{
                     return params;
                 }
             };
+            //Adding the request to the request queue.
             SingletonRequestHandler.getInstance(this).addToRequestQueue(stringRequest);
         }else {
+            //Printing messages respected to their validation response.
             if (value == 0){
                 Toast.makeText(RegisterActivity.this, "You have to be over 16 years old.", Toast.LENGTH_SHORT).show();
             }else if(value == 1){
@@ -197,18 +227,18 @@ public class RegisterActivity extends AppCompatActivity{
             }else if(value == 2){
                 Toast.makeText(RegisterActivity.this, "Please check your Password", Toast.LENGTH_SHORT).show();
             }
-//            Toast.makeText(RegisterActivity.this, "Some error occurred, Please check your inputs.", Toast.LENGTH_SHORT).show();
         }
     }
     //This function will check if the user goes through basic validations.
     private int validate(Date cu, Date bi, boolean confirm_email, boolean confirm_password){
+        //Checking if the user is over 16 years old.
         if ((((cu.getTime()-bi.getTime())/(1000*60*60*24)) < 5844)){
             return 0;
-        }else if (!confirm_email){
+        }else if (!confirm_email){//Checking to see if the email matches
             return  1;
-        }else if (!confirm_password){
+        }else if (!confirm_password){//Checking to see if the password matches
             return 2;
-        }else {
+        }else {//When all the validation passes 3 is returned which means the request is good to go.
             return 3;
         }
     }

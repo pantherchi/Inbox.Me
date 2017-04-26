@@ -77,6 +77,21 @@
                 android:id="@+id/tfSecondName" />
 
             <EditText
+                android:hint="@string/username"
+                android:background="@drawable/box_border"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tfSecondName"
+                android:id="@+id/tfUsername" />
+
+            <EditText
                 android:hint="@string/email"
                 android:background="@drawable/box_border"
                 android:padding="10dp"
@@ -88,7 +103,7 @@
                 android:ems="10"
                 android:id="@+id/tfEmail"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tfSecondName"
+                android:layout_below="@+id/tfUsername"
                 android:layout_centerHorizontal="true"/>
 
             <EditText
