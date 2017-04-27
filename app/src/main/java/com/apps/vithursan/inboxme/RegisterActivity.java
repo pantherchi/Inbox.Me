@@ -41,7 +41,8 @@ public class RegisterActivity extends AppCompatActivity{
     private ProgressDialog progressDialog;
 
     //URL of the php file where the request will be sent by volley
-    final String PHP_URL = "http://192.168.1.7/inboxme/registerUser.php";
+//    final String PHP_URL = "http://192.168.1.7/inboxme/registerUser.php";
+//    final String PHP_URL = "https://inboxme.000webhostapp.com/inboxme/registerUser.php";
 
 
     @Override
@@ -168,7 +169,7 @@ public class RegisterActivity extends AppCompatActivity{
             progressDialog.setMessage("Registering...");
             progressDialog.show();
             //Takes 4 parameter: 1.Method  2.URL  3.Response Listener  4.Error Listener  and Override getParams to pass in my data.
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, PHP_URL,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, Scripts.O_USER_REGISTER,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {

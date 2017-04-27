@@ -31,7 +31,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected Button btnLogIn;
     private ProgressDialog progressDialog;
 
-    final String PHP_URL = "http://192.168.1.7/inboxme/userLogin.php";
+    //Location of the php script for logging in the user.
+//    final String PHP_URL = "http://192.168.1.7/inboxme/userLogin.php";
+//    final String PHP_URL = "https://inboxme.000webhostapp.com//inboxme/userLogin.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         progressDialog.setMessage("Logging In...");
         progressDialog.show();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, PHP_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Scripts.O_USER_LOGIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 progressDialog.dismiss();

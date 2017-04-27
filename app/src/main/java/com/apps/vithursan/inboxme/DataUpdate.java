@@ -1,5 +1,6 @@
 package com.apps.vithursan.inboxme;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -34,8 +35,11 @@ public class DataUpdate extends AppCompatActivity {
     protected RadioGroup radioGroup;
     protected RadioButton radioButton;
     protected DatePicker datePicker;
+    private ProgressDialog progressDialog;
 
-    private static final String PHP_URL = "http://192.168.1.7/inboxme/userAllUpdate.php";
+    //Location of the php script for updating user credentials.
+//    private static final String PHP_URL = "http://192.168.1.7/inboxme/userAllUpdate.php";
+//    private static final String PHP_URL = "https://inboxme.000webhostapp.com/inboxme/userAllUpdate.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +131,7 @@ public class DataUpdate extends AppCompatActivity {
                     }
                 }
         );
+        progressDialog = new ProgressDialog(this);
     }
 
     private void updateName(final String title, final String pos, final View rootView) {
@@ -267,10 +272,13 @@ public class DataUpdate extends AppCompatActivity {
 
     private void updateDatabase(final String value, final String password, final String pos) {
         final String id = String.valueOf(LoginHandler.getInstance(getApplicationContext()).getUserID());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, PHP_URL,
+        progressDialog.setMessage("Updating...");
+        progressDialog.show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Scripts.O_DATA_UPDATE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        progressDialog.dismiss();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if (!jsonObject.getBoolean("error")){
@@ -288,6 +296,7 @@ public class DataUpdate extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.hide();
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
             }
         }) {

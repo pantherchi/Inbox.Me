@@ -27,8 +27,10 @@ public class SearchFriendsActivity extends AppCompatActivity{
     Button btnSearch, btnAction;
     ProgressDialog progressDialog;
 
-    final String PHP_URL_GET = "http://192.168.1.7/inboxme/addFriends.php";
-    final String PHP_URL_QUERY = "http://192.168.1.7/inboxme/userFriends.php";
+//    final String PHP_URL_GET = "http://192.168.1.7/inboxme/addFriends.php";
+//    final String PHP_URL_GET = "https://inboxme.000webhostapp.com/inboxme/addFriends.php";
+//    final String PHP_URL_QUERY = "http://192.168.1.7/inboxme/userFriends.php";
+//    final String PHP_URL_QUERY = "https://inboxme.000webhostapp.com/inboxme/userFriends.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +81,7 @@ public class SearchFriendsActivity extends AppCompatActivity{
 
         progressDialog.setMessage("Searching...");
         progressDialog.show();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, PHP_URL_GET, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Scripts.O_ADD_FRIENDS, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 progressDialog.dismiss();
@@ -131,6 +133,13 @@ public class SearchFriendsActivity extends AppCompatActivity{
             btnAction.setText("Add");
         }
     }
+    private String process(String action) {
+        if (action.equals("1")){
+            return "Removing user...";
+        }else {
+            return "Adding user...";
+        }
+    }
 
     private void queryRelations() {
         final String user_one = String.valueOf(LoginHandler.getInstance(this).getUserID());
@@ -138,9 +147,9 @@ public class SearchFriendsActivity extends AppCompatActivity{
         final String action = SearchFriendsHandler.getInstance(this).getKeyAction();
 //        Toast.makeText(getApplicationContext(), action, Toast.LENGTH_SHORT).show();
 
-        progressDialog.setMessage("Searching...");
+        progressDialog.setMessage(process(action));
         progressDialog.show();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, PHP_URL_QUERY, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Scripts.O_USER_FRIENDS, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 progressDialog.dismiss();

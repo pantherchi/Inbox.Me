@@ -31,7 +31,9 @@ public class FriendsFragment extends Fragment{
     private RecyclerView.Adapter adapter;
     private SwipeRefreshLayout mySwipeRefreshLayout;
 
-    final String DATA_URL = "http://192.168.1.7/inboxme/getFriends.php?id=";
+    //Location of php scripts.
+//    final String DATA_URL = "http://192.168.1.7/inboxme/getFriends.php?id=";
+//    final String DATA_URL = "https://inboxme.000webhostapp.com/inboxme/getFriends.php?id=";
 
     public FriendsFragment() {
         // Required empty public constructor
@@ -96,7 +98,7 @@ public class FriendsFragment extends Fragment{
     }
 
     private JsonArrayRequest getDataFromServer(int id) {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(DATA_URL + String.valueOf(id),
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Scripts.O_GET_FRIENDS + String.valueOf(id),
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {

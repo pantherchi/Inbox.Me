@@ -19,7 +19,9 @@ import java.util.Map;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
-    private static final String PHP_URL = "http://192.168.1.7/inboxme/setLikes.php" ;
+//    private static final String PHP_URL = "http://192.168.1.7/inboxme/setLikes.php" ;
+//    private static final String PHP_URL = "https://inboxme.000webhostapp.com/inboxme/setLikes.php" ;
+
     private Context context;
 
     //List to store all posts
@@ -94,7 +96,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         }
 
         private void setLikes(final String post_id, final String user_id) {
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, PHP_URL,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, Scripts.O_SET_LIKES,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {

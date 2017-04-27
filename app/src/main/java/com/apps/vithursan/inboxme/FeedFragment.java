@@ -1,5 +1,6 @@
 package com.apps.vithursan.inboxme;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -43,15 +44,18 @@ public class FeedFragment extends Fragment implements RecyclerView.OnScrollChang
     protected LinearLayoutManager linearLayoutManager;
     private SwipeRefreshLayout mySwipeRefreshLayout;
     private RecyclerView.Adapter adapter;
+    private ProgressDialog progressDialog;
 
     //Counter that will be assigned to the post in the php script
     private int count = 0;
 
     //Location of the php script for adding a new post.
-    final String PHP_NEW_POST = "http://192.168.1.7/inboxme/newPost.php";
+//    final String PHP_NEW_POST = "http://192.168.1.7/inboxme/newPost.php";
+//    final String PHP_NEW_POST = "https://inboxme.000webhostapp.com/inboxme/newPost.php";
 //    public static final String PHP_URL_DATA = "http://192.168.1.7/inboxme/usersPost.php?post=";
     //Location of the php script for getting the post from the database post table.
-    public static final String PHP_URL_DATA = "http://192.168.1.7/inboxme/getPost.php?post=";
+//    public static final String PHP_URL_DATA = "http://192.168.1.7/inboxme/getPost.php?post=";
+//    public static final String PHP_URL_DATA = "https://inboxme.000webhostapp.com/inboxme/getPost.php?post=";
 
     public FeedFragment() {
         // Required empty public constructor
@@ -111,6 +115,7 @@ public class FeedFragment extends Fragment implements RecyclerView.OnScrollChang
                 }
         );
 
+        progressDialog = new ProgressDialog(getContext());
         return view;
     }
 
@@ -162,10 +167,13 @@ public class FeedFragment extends Fragment implements RecyclerView.OnScrollChang
         final String id = String.valueOf(LoginHandler.getInstance(getContext()).getUserID());
         final String user_name = LoginHandler.getInstance(getContext()).getUsername();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, PHP_NEW_POST,
+        progressDialog.setMessage("Posting...");
+        progressDialog.show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Scripts.O_NEW_POST,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        progressDialog.dismiss();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if (!jsonObject.getBoolean("error")){
@@ -181,6 +189,7 @@ public class FeedFragment extends Fragment implements RecyclerView.OnScrollChang
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.hide();
                 Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();
             }
         }) {
@@ -199,7 +208,7 @@ public class FeedFragment extends Fragment implements RecyclerView.OnScrollChang
 
     private JsonArrayRequest getUsersPosts(int requestCount) {
         final String id = String.valueOf(LoginHandler.getInstance(getContext()).getUserID());
-            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(PHP_URL_DATA + String.valueOf(requestCount) + "& id=" + id ,
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Scripts.O_USERS_POST + String.valueOf(requestCount) + "& id=" + id ,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {

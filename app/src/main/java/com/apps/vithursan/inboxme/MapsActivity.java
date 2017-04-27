@@ -35,7 +35,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Geocoder geocoder;
     List<Address> addressList;
     EditText location;
-    final String DATA_URL = "http://192.168.1.7/inboxme/getMarker.php";
+//    final String DATA_URL = "http://192.168.1.7/inboxme/getMarker.php";
+//    final String DATA_URL = "https://inboxme.000webhostapp.com//inboxme/getMarker.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,22 +69,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void dataQry(){
-        JsonArrayRequest request = new JsonArrayRequest(DATA_URL,
+        JsonArrayRequest request = new JsonArrayRequest(Scripts.O_GET_MARKER,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {
-                        String  title = null, username = null, postcode = null;
+                        String  title = null, username = null, postcode = null, snippet = null;
                         for(int i = 0; i < jsonArray.length(); i++) {
                             try {
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 title = object.getString("title");
                                 username = object.getString("username");
                                 postcode = object.getString("post_code");
+                                snippet = object.getString("snippet");
                             } catch (Exception e) {
 
                             }
                             try {
-                                makeMarker(title,postcode,username);
+                                makeMarker(title,postcode,username, snippet);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -98,12 +100,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SingletonRequestHandler.getInstance(this).addToRequestQueue(request);//singleton class
     }
 
-    private void makeMarker(String Title, String location, String snippet) throws IOException {
+    private void makeMarker(String Title, String location, String username, String snippet) throws IOException {
         geocoder = new Geocoder(this);
         addressList = geocoder.getFromLocationName(location,1);
         Address address = addressList.get(0);
         LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(latLng).title(Title).snippet(snippet));
+        mMap.addMarker(new MarkerOptions().position(latLng).title(Title).snippet(snippet + "\n"+ username));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
     }
     public void onSearch(View view) throws IOException {
